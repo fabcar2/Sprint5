@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="estilos\estilos2.css"> 
+    <title>Document</title>
+
+    <script src="jquery/jquery-3.6.0.min.js"></script>
+    <script>
+       
+
+        $(function(){
+            
+                   
+            $("#registrar").on("click",function(){
+              
+				var nombres=$("#nombres").val();
+                var apellidos=$("#apellidos").val();
+                var telefono=$("#telefono").val();
+                var correo=$("#email").val();
+                var identificacion=$("#identificacion").val();
+                //console.log("nombres: "+nombres+" - Apellidos: "+apellidos+" - telefono: "+telefono+" - correo: "+correo+" - Edad: "+edad)
+                var endpoint="http://localhost:8080/usuario";
+
+     //Se ejecuta con el evento de carga completa del documento html
+     $(document).ready(function(){
+            alert("Usuario Registrado")
+
+        })
+
+
+                fetch(endpoint,{
+                    method:"POST",
+                    mode:"cors",
+                    cache:"no-cache",
+                    headers:{"Content-type":"application/json"},
+                    body:JSON.stringify({nombres,apellidos,telefono,correo,identificacion})
+					
+					
+                }).then(response=>response.json(function(){
+     
+                   
+
+                
+
+
+                }))
+
+            })
+            
+        })
+
+
+
+
+    </script>
+</head>
+<body>
+    <div id="contenedor">
+        <header>
+            <label>Software para realizar la  reserva de cancha</label> <br>
+            <label>Futbol 5 y Futbol 7</label> 
+        </header>
+        <nav>
+
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="ingresar.html">Ingresar</a></li>
+                              
+            </ul>
+            </nav>
+    
+        <div id="registro">
+          
+            <br>
+            <h1>Registro de Nuevo usuario</h1><BR>
+            <fieldset id="formularioregistro" >
+             <form>   
+            <label>Nombres:</label>
+            <input type="text" id="nombres" name="nombre" placeholder="Nombre" required><br>
+            <label>Apellidos:</label>
+            <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos"required><br>
+            <label>Numero de Identificacion:</label>
+            <input type="number" id="identificacion" name="identificacion" placeholder="Identificacion"><br>
+            <label>Telefono:</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="Telefono" required><br>
+            <label>Email:</label>
+            <input type="email" id="email" name="correo" placeholder="Correo Electronico"><br>
+            <br>
+            <input type="submit" id="registrar" name="guardar" value="Registrar Usuario">
+         </form>   
+        </fieldset>
+           
+              
+        
+        
+        </div>
+        
+
+       <footer>
+        <div> Desarrollado por Ing. Fabio Carreño Capacho</div> <br>
+        <div> Floridablanca - Colombia Telefono: 3182657415</div> <br> 
+        
+        </footer>
+    </div>
+
+  
+</body>
+</html>

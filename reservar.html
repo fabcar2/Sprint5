@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="estilos\estilos2.css"> 
+    <title>Document</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <script>
+    $(function(){
+
+        $("#reservar").on("click",function(){
+                var identificacion=$("#identificacion").val();
+                var cancha=$("#identificacion").val();
+                var fecha=$("#fecha").val();
+                var horas=$("#hora").val();
+                var endpoint="http://localhost:8080/reserva";
+
+                fetch(endpoint,{
+                    method:"POST",
+                    mode:"cors",
+                    cache:"no-cache",
+                    headers:{"Content-type":"application/json"},
+					body:JSON.stringify({identificacion,cancha,fecha})
+                   
+				  
+				   
+                }).then(response=>response.json(function(){
+     
+
+
+                }))
+
+            })
+            
+
+
+        
+        $("#buscar").on("click",function(){
+            
+            var input=document.querySelector("#campo2");
+            input.remove();
+
+              campo = '<div id"campo2">'+
+                     '<h3> Ingresar Correo electronico para buscar reserva</h3>'+'<br>'+
+                     '<label>Email:</label>'+'<input type="email" id="correo" name="correo" placeholder="Correo Electronico"><br>'+
+                     '<br>'+'<button type="submit">Buscar Reserva</button>'+'<br>'+'<br>'+
+                     '<table border="1">'+'<thead>'+' <th>Identificacion</th>'+
+                    ' <th>Tipo de Cancha</th>'+ '<th>Fecha</th>'+
+                     ' <th>Hora</th>'+'</thead>'+' <tbody id="cuerpotabla">'+'  </tbody>'+                    
+                     '</div>'
+                     
+             $("#campo1").append(campo);
+            
+
+        })
+       
+        
+        $("#cancelar").on("click",function(){
+            
+            var input=document.querySelector("#campo2");
+            input.remove();
+            
+             campo = '<div id"campo2">'+
+                     '<h3> Ingresar Correo electronico para buscar reserva a cancelar</h3>'+'<br>'+
+                     '<label>Email:</label>'+'<input type="email" id="correo" name="correo" placeholder="Correo Electronico"><br>'+
+                     '<br>'+'<button type="button" id="btnbuscarreserva">Buscar reserva</button>'+
+                     '</div>'
+                     
+             $("#campo1").append(campo);
+
+        })
+       
+        $("#btnbuscarreserva").on("click",function(){
+            campo= '<br>'+'<button type="button" id="btncancelar">Cancelar reserva</button>'
+            $("#campo1").append(campo);
+        })
+
+
+    })
+</script>
+
+
+</head>
+<body>
+    <div id="contenedor">
+        <header>
+            <label>Software para realizar la  reserva de cancha</label> <br>
+            <label>Futbol 5 y Futbol 7</label> 
+
+        </header>
+        
+        <nav>
+
+            <ul>
+                <li><a href="reservar.html">Reservar</a></li> 
+                <li><a id="buscar">Buscar Reserva</a></li>
+                <li><a id="cancelar">Cancelar Reserva</a></li>          
+                <li><a href="index.html">salir</a></li>
+                   
+            </ul>
+            </nav>
+    
+        <div id="registro">
+          
+            <br>
+            <h1>Ingresar los datos para Reservar</h1><BR>
+            <fieldset id="formularioReserva" >
+               
+                <form>
+                    <div id="campo1">
+                        <div id="campo2">
+                            <h3 > Identificación:</h3>
+                             <input type="number" id="identificacion" placeholder="Nro de documento" required><br>
+                                <h3>Seleccione el tipo de Cancha </h3><br>
+                                <fieldset style="text-align:center">
+                                <input type="radio" id="futbol5"
+                                name="tipocancha" value="futbol5" required>
+                                <label for="tipocanchaf5">Futbol 5.</label>
+                                <input type="radio" id="futbol7"
+                                name="tipocancha" value="futbol7" required>
+                                <label for="tipocanchaf7"> Futbol 7.</label> 
+                               </fieldset><br>
+                                <h3>Seleccione la fecha y hora</h3><br>
+                                <fieldset>
+                                <label>Fecha:</label> 
+                                <input type="date" id="fecha" placeholder="Seleccionar fecha" required><br>
+                                <label>Hora:</label> 
+                                <input type="time" id="hora" value="8:00" max="23:00" min="08:00" step="60" required><br>
+                                </fieldset> <br>
+                                <div style="text-align:center">
+                                <button type="submit" id="reservar" >Reservar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                  </form> 
+        </fieldset>
+                 
+        
+        </div>
+        
+
+       <footer>
+        <div> Desarrollado por Ing. Fabio Carreño Capacho</div> <br>
+        <div> Floridablanca - Colombia Telefono: 3182657415</div> <br> 
+        
+        </footer>
+    </div>
+
+  
+</body>
+</html>
